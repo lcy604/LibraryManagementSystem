@@ -3,12 +3,13 @@ package org.andy.librarymanagementsystem.entity;
 public class Book {
     String title;
     String author;
-    int inventory;
+    private int totalInventory;
+    private int currentInventory;
 
-    Book(String title, String author, int inventory) {
+    Book(String title, String author, int totalInventory) {
         this.title = title;
         this.author = author;
-        this.inventory = inventory;
+        this.totalInventory = totalInventory;
     }
 
     public String getTitle() {
@@ -27,11 +28,19 @@ public class Book {
         this.author = author;
     }
 
-    public int getInventory() {
-        return inventory;
+    public int getTotalInventory() {
+        return totalInventory;
     }
 
-    public void setInventory(int inventory) {
-        this.inventory = inventory;
+    public void setTotalInventory(int totalInventory) {
+        this.totalInventory = totalInventory;
+    }
+
+    public int getCurrentInventory() {
+        return currentInventory;
+    }
+
+    public void setCurrentInventory(int currentInventory) {
+        this.currentInventory = currentInventory;
     }
 }
