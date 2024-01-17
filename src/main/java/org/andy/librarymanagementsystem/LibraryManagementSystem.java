@@ -18,12 +18,22 @@ import java.util.Scanner;
  * @created 2024/1/16/016
  */
 public class LibraryManagementSystem {
-    public static void main(String[] args) {
-        UserService userService = new UserService(new InMemoryUserRepository());
+    UserService userService;
+    BookService bookService;
+    BorrowRecordService borrowRecordService;
+    CommandFactory commandFactory;
+    public LibraryManagementSystem(){
+        init();
+    }
+
+    private void init(){
+        userService = new UserService(new InMemoryUserRepository());
         InMemoryBorrowRecordRepository borrowRecordRepository = new InMemoryBorrowRecordRepository();
-        BookService bookService = new BookService(new InMemoryBookRepository(), borrowRecordRepository);
-        BorrowRecordService borrowRecordService = new BorrowRecordService(borrowRecordRepository);
-        CommandFactory commandFactory = new CommandFactory();
+        bookService = new BookService(new InMemoryBookRepository(), borrowRecordRepository);
+        borrowRecordService = new BorrowRecordService(borrowRecordRepository);
+        commandFactory = new CommandFactory();
+    }
+    public void run(){
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.print("$ ");
@@ -32,7 +42,7 @@ public class LibraryManagementSystem {
                 if (tokens.length == 0){
                     continue;
                 }
-                // Remove double quotes from the parsed tokens
+                // Remove double quotes and space from the parsed tokens in the head and tail
                 for (int i = 0; i < tokens.length; i++) {
                     tokens[i] = tokens[i].replaceAll("^\"|\"$", "");
                     tokens[i] = tokens[i].replaceAll("^\\s|\\s$", "");
@@ -45,5 +55,8 @@ public class LibraryManagementSystem {
                 }
             }
         }
+    }
+    public static void main(String[] args) {
+        new LibraryManagementSystem().run();
     }
 }
