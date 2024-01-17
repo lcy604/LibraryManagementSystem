@@ -24,8 +24,8 @@ public class InMemoryBorrowRecordRepositoryTest {
         BorrowRecord borrowRecord = new BorrowRecord("testUser", "Test Book - Test Author", 1);
         borrowRecordRepository.addBorrowRecord(borrowRecord);
 
-        assertTrue(borrowRecordRepository.getAllBorrowRecords().containsKey("testUser-Test Book - Test Author"));
-        assertEquals(1, borrowRecordRepository.getAllBorrowRecords().get("testUser-Test Book - Test Author").getQuantity());
+        assertTrue(borrowRecordRepository.getAllBorrowRecords().containsKey("Test Book - Test Author"));
+        assertEquals(1, borrowRecordRepository.getAllBorrowRecords().get("Test Book - Test Author").getQuantity());
     }
 
     @Test

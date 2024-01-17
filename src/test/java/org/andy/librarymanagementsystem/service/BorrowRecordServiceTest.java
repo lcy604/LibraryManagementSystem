@@ -24,8 +24,8 @@ public class BorrowRecordServiceTest {
     public void testAddBorrowRecord() {
         borrowRecordService.borrowBook("testUser", "Test Book - Test Author", 1);
 
-        assertTrue(borrowRecordService.getAllBorrowRecords().containsKey("testUser-Test Book - Test Author"));
-        assertEquals(1, borrowRecordService.getAllBorrowRecords().get("testUser-Test Book - Test Author").getQuantity());
+        assertTrue(borrowRecordService.getAllBorrowRecords().containsKey("Test Book - Test Author"));
+        assertEquals(1, borrowRecordService.getAllBorrowRecords().get("Test Book - Test Author").getQuantity());
     }
 
     @Test
