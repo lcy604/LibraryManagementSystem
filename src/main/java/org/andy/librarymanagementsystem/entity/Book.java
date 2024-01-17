@@ -13,6 +13,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.totalInventory = totalInventory;
+        this.currentInventory =  totalInventory;
     }
 
     public String getTitle() {
@@ -45,5 +46,9 @@ public class Book {
 
     public void setCurrentInventory(int currentInventory) {
         this.currentInventory = currentInventory;
+    }
+
+    public String toString() {
+        return String.format("%s - %s - Inventory: %d", title, author, currentInventory);
     }
 }

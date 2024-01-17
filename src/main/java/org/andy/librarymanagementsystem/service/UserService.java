@@ -10,6 +10,8 @@ import org.andy.librarymanagementsystem.repository.UserRepository;
 public class UserService {
     private UserRepository userRepository;
 
+    private User loginUser;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -19,6 +21,22 @@ public class UserService {
     }
 
     public boolean loginUser(String username, String password) {
-        return userRepository.isValidLogin(username, password);
+        boolean validLogin = userRepository.isValidLogin(username, password);
+        if (validLogin){
+            loginUser =  userRepository.findUser(username);
+        }
+        return validLogin;
+    }
+
+    public User getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(User loginUser) {
+        this.loginUser = loginUser;
+    }
+
+    public User findUser(String username){
+        return userRepository.findUser(username);
     }
 }

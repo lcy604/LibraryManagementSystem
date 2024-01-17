@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface BookRepository {
 
-    void addBook(Book book);
+    Book addBook(Book book);
 
     void deleteBook(String title, String author);
 

@@ -20,6 +20,10 @@ public class BorrowRecordService {
         return borrowRecordRepository.addBorrowRecord(new BorrowRecord(username, bookKey, quantity));
     }
 
+    public boolean borrowBook(String username, String bookKey) {
+        return borrowRecordRepository.addBorrowRecord(new BorrowRecord(username, bookKey, -1));
+    }
+
     public boolean returnBook(String username, String bookKey) {
         return borrowRecordRepository.removeBorrowRecord(username, bookKey);
     }

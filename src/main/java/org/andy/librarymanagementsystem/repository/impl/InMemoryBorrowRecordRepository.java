@@ -15,18 +15,16 @@ public class InMemoryBorrowRecordRepository implements BorrowRecordRepository {
 
     @Override
     public boolean addBorrowRecord(BorrowRecord borrowRecord) {
-        String key = generateBorrowRecordKey(borrowRecord.getUsername(), borrowRecord.getBookKey());
-        if (!borrowRecords.containsKey(key)) {
-            borrowRecords.put(key, borrowRecord);
+        if (!borrowRecords.containsKey(borrowRecord.getBookKey())) {
+            borrowRecords.put(borrowRecord.getBookKey(), borrowRecord);
             return true;
         }
         return false;
     }
     @Override
     public boolean removeBorrowRecord(String username, String bookKey) {
-        String key = generateBorrowRecordKey(username, bookKey);
-        if (borrowRecords.containsKey(key)) {
-            borrowRecords.remove(key);
+        if (borrowRecords.containsKey(bookKey)) {
+            borrowRecords.remove(bookKey);
             return true;
         }
         return false;
@@ -34,9 +32,5 @@ public class InMemoryBorrowRecordRepository implements BorrowRecordRepository {
     @Override
     public Map<String, BorrowRecord> getAllBorrowRecords() {
         return new HashMap<>(borrowRecords);
-    }
-    @Override
-    public String generateBorrowRecordKey(String username, String bookKey) {
-        return username + "-" + bookKey;
     }
 }

@@ -14,14 +14,16 @@ public class InMemoryBookRepository implements BookRepository {
     private Map<String, Book> books = new HashMap<>(); // bookKey, Book
 
     @Override
-    public void addBook(Book book) {
+    public Book addBook(Book book) {
         String key = generateKey(book.getTitle(), book.getAuthor());
         if (books.containsKey(key)) {
             Book existingBook = books.get(key);
             existingBook.setTotalInventory(existingBook.getTotalInventory() + book.getTotalInventory());
             existingBook.setCurrentInventory(existingBook.getCurrentInventory() + book.getTotalInventory());
+            return existingBook;
         } else {
             books.put(key, book);
+            return book;
         }
     }
 

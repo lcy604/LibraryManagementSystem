@@ -14,6 +14,4 @@ public interface BorrowRecordRepository {
     boolean removeBorrowRecord(String username, String bookKey);
 
     Map<String, BorrowRecord> getAllBorrowRecords();
-
-    String generateBorrowRecordKey(String username, String bookKey);
 }

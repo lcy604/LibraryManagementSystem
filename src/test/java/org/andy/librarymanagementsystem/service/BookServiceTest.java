@@ -3,6 +3,7 @@ package org.andy.librarymanagementsystem.service;
 import org.andy.librarymanagementsystem.entity.Book;
 import org.andy.librarymanagementsystem.repository.BookRepository;
 import org.andy.librarymanagementsystem.repository.impl.InMemoryBookRepository;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class BookServiceTest {
 
     @Before
     public void setUp() {
-        bookService = new BookService(new InMemoryBookRepository());
+        bookService = new BookService(new InMemoryBookRepository(), new InMemoryBorrowRecordRepository());
     }
 
     @Test
