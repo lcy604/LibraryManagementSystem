@@ -10,4 +10,6 @@ public interface UserRepository {
     boolean addUser(User user);
 
     boolean isValidLogin(String username, String password);
+
+    User findUser(String username);
 }
