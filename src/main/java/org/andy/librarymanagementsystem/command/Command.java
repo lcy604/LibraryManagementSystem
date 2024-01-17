@@ -10,4 +10,8 @@ import org.andy.librarymanagementsystem.service.UserService;
  */
 public interface Command {
     void execute(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens);
+
+    boolean validate(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens);
+
+    public void run(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens);
 }

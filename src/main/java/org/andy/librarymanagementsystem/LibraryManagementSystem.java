@@ -35,10 +35,11 @@ public class LibraryManagementSystem {
                 // Remove double quotes from the parsed tokens
                 for (int i = 0; i < tokens.length; i++) {
                     tokens[i] = tokens[i].replaceAll("^\"|\"$", "");
+                    tokens[i] = tokens[i].replaceAll("^\\s|\\s$", "");
                 }
 
                 Command command = commandFactory.getCommand(tokens[0]);
-                Optional.ofNullable(command).ifPresent(c -> c.execute(userService, bookService, borrowRecordService, tokens));
+                Optional.ofNullable(command).ifPresent(c -> c.run(userService, bookService, borrowRecordService, tokens));
                 if (command instanceof ExitCommand){
                     break;
                 }

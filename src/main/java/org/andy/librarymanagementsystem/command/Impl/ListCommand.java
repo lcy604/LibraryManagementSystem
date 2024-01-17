@@ -1,5 +1,6 @@
 package org.andy.librarymanagementsystem.command.Impl;
 
+import org.andy.librarymanagementsystem.command.BaseCommand;
 import org.andy.librarymanagementsystem.command.Command;
 import org.andy.librarymanagementsystem.entity.Book;
 import org.andy.librarymanagementsystem.entity.User;
@@ -13,7 +14,7 @@ import java.util.Map;
  * @author Andy
  * @created 2024/1/16/016
  */
-public class ListCommand implements Command {
+public class ListCommand  extends BaseCommand {
 
     @Override
     public void execute(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens) {
@@ -34,5 +35,10 @@ public class ListCommand implements Command {
         } else {
             System.out.println("Please log in to view the list of books.");
         }
+    }
+
+    @Override
+    public boolean validate(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens) {
+        return true;
     }
 }

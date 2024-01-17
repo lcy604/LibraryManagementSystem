@@ -1,5 +1,6 @@
 package org.andy.librarymanagementsystem.command.Impl;
 
+import org.andy.librarymanagementsystem.command.BaseCommand;
 import org.andy.librarymanagementsystem.command.Command;
 import org.andy.librarymanagementsystem.entity.User;
 import org.andy.librarymanagementsystem.service.BookService;
@@ -10,7 +11,7 @@ import org.andy.librarymanagementsystem.service.UserService;
  * @author Andy
  * @created 2024/1/16/016
  */
-public class LogoutCommand implements Command {
+public class LogoutCommand  extends BaseCommand {
 
     @Override
     public void execute(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens) {
@@ -22,5 +23,10 @@ public class LogoutCommand implements Command {
         } else {
             System.out.println("No user is currently logged in.");
         }
+    }
+
+    @Override
+    public boolean validate(UserService userService, BookService bookService, BorrowRecordService borrowRecordService, String[] tokens) {
+        return true;
     }
 }
