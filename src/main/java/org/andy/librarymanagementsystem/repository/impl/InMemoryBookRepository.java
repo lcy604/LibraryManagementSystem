@@ -1,5 +1,6 @@
 package org.andy.librarymanagementsystem.repository.impl;
 
+import org.andy.librarymanagementsystem.BookKeyUtil;
 import org.andy.librarymanagementsystem.entity.Book;
 import org.andy.librarymanagementsystem.repository.BookRepository;
 
@@ -15,7 +16,7 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public Book addBook(Book book) {
-        String key = generateKey(book.getTitle(), book.getAuthor());
+        String key = BookKeyUtil.generateBookKey(book.getTitle(), book.getAuthor());
         if (books.containsKey(key)) {
             Book existingBook = books.get(key);
             existingBook.setTotalInventory(existingBook.getTotalInventory() + book.getTotalInventory());
@@ -29,12 +30,12 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public void deleteBook(String title, String author) {
-        String key = generateKey(title, author);
+        String key = BookKeyUtil.generateBookKey(title, author);
         books.remove(key);
     }
     @Override
     public Book getBook(String title, String author) {
-        String key = generateKey(title, author);
+        String key = BookKeyUtil.generateBookKey(title, author);
         return books.get(key);
     }
 
@@ -43,7 +44,5 @@ public class InMemoryBookRepository implements BookRepository {
         return new HashMap<>(books);
     }
 
-    private String generateKey(String title, String author) {
-        return title + " - " + author;
-    }
+
 }
