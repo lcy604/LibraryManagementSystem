@@ -1,10 +1,13 @@
 package org.andy.librarymanagementsystem.entity;
-
+/**
+ * @author Andy
+ * @created 2024/1/16/016
+ */
 public class User {
     String username;
     String password;
 
-    User(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
