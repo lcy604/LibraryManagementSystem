@@ -16,7 +16,7 @@ public class InMemoryBookRepositoryTest {
 
     @Before
     public void setUp() {
-        bookRepository = new InMemoryBookRepository();
+        bookRepository = new InMemoryBookRepositoryImplement();
     }
 
     @Test
@@ -24,8 +24,8 @@ public class InMemoryBookRepositoryTest {
         Book book = new Book("Test Book", "Test Author", 5);
         bookRepository.addBook(book);
 
-        assertTrue(bookRepository.getAllBooks().containsKey("Test Book - Test Author"));
-        assertEquals(5, bookRepository.getAllBooks().get("Test Book - Test Author").getTotalInventory());
+        assertTrue(bookRepository.getAllBooks().containsKey("Test Book-Test Author"));
+        assertEquals(5, bookRepository.getAllBooks().get("Test Book-Test Author").getTotalInventory());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class InMemoryBookRepositoryTest {
 
         bookRepository.deleteBook("Test Book", "Test Author");
 
-        assertFalse(bookRepository.getAllBooks().containsKey("Test Book - Test Author"));
+        assertFalse(bookRepository.getAllBooks().containsKey("Test Book-Test Author"));
     }
 
     @Test

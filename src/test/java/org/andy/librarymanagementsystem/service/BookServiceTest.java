@@ -1,9 +1,7 @@
 package org.andy.librarymanagementsystem.service;
 
-import org.andy.librarymanagementsystem.entity.Book;
-import org.andy.librarymanagementsystem.repository.BookRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryBookRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepository;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBookRepositoryImplement;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepositoryImplement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,15 +16,15 @@ public class BookServiceTest {
 
     @Before
     public void setUp() {
-        bookService = new BookService(new InMemoryBookRepository(), new InMemoryBorrowRecordRepository());
+        bookService = new BookService(new InMemoryBookRepositoryImplement(), new InMemoryBorrowRecordRepositoryImplement());
     }
 
     @Test
     public void testAddBook() {
         bookService.addBook("Test Book", "Test Author", 5);
 
-        assertTrue(bookService.getAllBooks().containsKey("Test Book - Test Author"));
-        assertEquals(5, bookService.getAllBooks().get("Test Book - Test Author").getTotalInventory());
+        assertTrue(bookService.getAllBooks().containsKey("Test Book-Test Author"));
+        assertEquals(5, bookService.getAllBooks().get("Test Book-Test Author").getTotalInventory());
     }
 
     @Test

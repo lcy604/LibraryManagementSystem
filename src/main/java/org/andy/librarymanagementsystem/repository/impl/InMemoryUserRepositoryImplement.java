@@ -10,7 +10,7 @@ import java.util.Map;
  * @author Andy
  * @created 2024/1/16/016
  */
-public class InMemoryUserRepository implements UserRepository {
+public class InMemoryUserRepositoryImplement implements UserRepository {
     private Map<String, User> users = new HashMap<>();
     @Override
     public boolean addUser(User user) {

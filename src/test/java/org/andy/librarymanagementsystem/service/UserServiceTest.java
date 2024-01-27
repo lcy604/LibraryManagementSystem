@@ -1,8 +1,7 @@
 package org.andy.librarymanagementsystem.service;
 
 import org.andy.librarymanagementsystem.entity.User;
-import org.andy.librarymanagementsystem.repository.UserRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryUserRepository;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryUserRepositoryImplement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
-        userService = new UserService(new InMemoryUserRepository());
+        userService = new UserService(new InMemoryUserRepositoryImplement());
     }
 
     @Test

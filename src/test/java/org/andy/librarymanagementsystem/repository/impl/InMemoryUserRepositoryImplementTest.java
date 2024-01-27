@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
  * @author Andy
  * @created 2024/1/17/017
  */
-public class InMemoryUserRepositoryTest {
+public class InMemoryUserRepositoryImplementTest {
     private UserRepository userRepository;
 
     @Before
     public void setUp() {
-        userRepository = new InMemoryUserRepository();
+        userRepository = new InMemoryUserRepositoryImplement();
     }
 
     @Test

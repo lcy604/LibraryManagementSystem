@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
  * @author Andy
  * @created 2024/1/17/017
  */
-public class InMemoryBorrowRecordRepositoryTest {
+public class InMemoryBorrowRecordRepositoryImplementTest {
     private BorrowRecordRepository borrowRecordRepository;
 
     @Before
     public void setUp() {
-        borrowRecordRepository = new InMemoryBorrowRecordRepository();
+        borrowRecordRepository = new InMemoryBorrowRecordRepositoryImplement();
     }
 
     @Test

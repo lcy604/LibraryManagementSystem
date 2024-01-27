@@ -1,8 +1,6 @@
 package org.andy.librarymanagementsystem.service;
 
-import org.andy.librarymanagementsystem.entity.BorrowRecord;
-import org.andy.librarymanagementsystem.repository.BorrowRecordRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepository;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepositoryImplement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +15,7 @@ public class BorrowRecordServiceTest {
 
     @Before
     public void setUp() {
-        borrowRecordService = new BorrowRecordService(new InMemoryBorrowRecordRepository());
+        borrowRecordService = new BorrowRecordService(new InMemoryBorrowRecordRepositoryImplement());
     }
 
     @Test

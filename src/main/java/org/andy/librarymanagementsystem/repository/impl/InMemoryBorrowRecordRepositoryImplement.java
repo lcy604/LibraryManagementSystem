@@ -10,7 +10,7 @@ import java.util.Map;
  * @author Andy
  * @created 2024/1/16/016
  */
-public class InMemoryBorrowRecordRepository implements BorrowRecordRepository {
+public class InMemoryBorrowRecordRepositoryImplement implements BorrowRecordRepository {
     private Map<String, BorrowRecord> borrowRecords = new HashMap<>(); // username-bookKey, BorrowRecord
 
     @Override

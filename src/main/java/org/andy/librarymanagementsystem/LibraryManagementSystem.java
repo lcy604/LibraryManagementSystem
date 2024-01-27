@@ -3,9 +3,12 @@ package org.andy.librarymanagementsystem;
 import org.andy.librarymanagementsystem.command.Command;
 import org.andy.librarymanagementsystem.command.CommandFactory;
 import org.andy.librarymanagementsystem.command.Impl.ExitCommand;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryBookRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepository;
-import org.andy.librarymanagementsystem.repository.impl.InMemoryUserRepository;
+import org.andy.librarymanagementsystem.repository.BorrowRecordRepository;
+import org.andy.librarymanagementsystem.repository.factory.InMemoryRepositoryFactory;
+import org.andy.librarymanagementsystem.repository.factory.RepositoryFactory;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBookRepositoryImplement;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryBorrowRecordRepositoryImplement;
+import org.andy.librarymanagementsystem.repository.impl.InMemoryUserRepositoryImplement;
 import org.andy.librarymanagementsystem.service.BookService;
 import org.andy.librarymanagementsystem.service.BorrowRecordService;
 import org.andy.librarymanagementsystem.service.UserService;
@@ -28,9 +31,10 @@ public class LibraryManagementSystem {
     }
 
     private void init() {
-        userService = new UserService(new InMemoryUserRepository());
-        InMemoryBorrowRecordRepository borrowRecordRepository = new InMemoryBorrowRecordRepository();
-        bookService = new BookService(new InMemoryBookRepository(), borrowRecordRepository);
+        RepositoryFactory repositoryFactory = new InMemoryRepositoryFactory();
+        userService = new UserService(repositoryFactory.getUserRepositoryImplement());
+        BorrowRecordRepository borrowRecordRepository = repositoryFactory.getBorrowRecordRepository();
+        bookService = new BookService(new InMemoryBookRepositoryImplement(), borrowRecordRepository);
         borrowRecordService = new BorrowRecordService(borrowRecordRepository);
         commandFactory = new CommandFactory();
     }
@@ -41,8 +45,13 @@ public class LibraryManagementSystem {
                 try {
                     System.out.print("$ ");
                     String commandLine = scanner.nextLine();
+                    if(commandLine.length() == 0){
+                        System.out.println("");
+                        continue;
+                    }
                     String[] tokens = commandLine.trim().split("\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     if (tokens.length == 0) {
+                        System.out.println("");
                         continue;
                     }
                     // Remove double quotes and space from the parsed tokens in the head and tail

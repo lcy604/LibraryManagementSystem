@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Andy
  * @created 2024/1/16/016
  */
-public class InMemoryBookRepository implements BookRepository {
+public class InMemoryBookRepositoryImplement implements BookRepository {
     private Map<String, Book> books = new HashMap<>(); // bookKey, Book
 
     @Override
