@@ -28,7 +28,7 @@ This is a simple command-line library management system implemented in Java. The
 
 ## How to Run
 1. Ensure you have Java11 installed on your machine.
-2. Compile the source code: javac LibraryManagementSystem.java
+2. Compile the source code
 3. Run the application: java LibraryManagementSystem
 
 ## Notes
