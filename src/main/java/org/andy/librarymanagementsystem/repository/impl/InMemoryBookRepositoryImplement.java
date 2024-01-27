@@ -1,6 +1,6 @@
 package org.andy.librarymanagementsystem.repository.impl;
 
-import org.andy.librarymanagementsystem.BookKeyUtil;
+import org.andy.librarymanagementsystem.util.BookKeyUtil;
 import org.andy.librarymanagementsystem.entity.Book;
 import org.andy.librarymanagementsystem.repository.BookRepository;
 

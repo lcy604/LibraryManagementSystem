@@ -1,4 +1,4 @@
-package org.andy.librarymanagementsystem;
+package org.andy.librarymanagementsystem.util;
 
 import org.andy.librarymanagementsystem.entity.Book;
 
