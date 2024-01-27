@@ -45,6 +45,7 @@ public class LibraryManagementSystem {
                 try {
                     System.out.print("$ ");
                     String commandLine = scanner.nextLine();
+                    // handle only new line is input
                     if(commandLine.length() == 0){
                         System.out.println("");
                         continue;
@@ -71,7 +72,7 @@ public class LibraryManagementSystem {
     private static String[] parseCommand(String commandLine) {
         String[] tokens = commandLine.trim().split("\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         if (tokens.length == 0) {
-            System.out.println("");
+            System.out.println(String.format("Invalid command: %s", commandLine));
             return null;
         }
         // Remove double quotes and space from the parsed tokens in the head and tail
