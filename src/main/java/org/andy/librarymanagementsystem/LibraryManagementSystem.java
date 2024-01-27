@@ -49,21 +49,15 @@ public class LibraryManagementSystem {
                         System.out.println("");
                         continue;
                     }
-                    String[] tokens = commandLine.trim().split("\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                    if (tokens.length == 0) {
-                        System.out.println("");
-                        continue;
-                    }
-                    // Remove double quotes and space from the parsed tokens in the head and tail
-                    for (int i = 0; i < tokens.length; i++) {
-                        tokens[i] = tokens[i].replaceAll("^\"|\"$", "");
-                        tokens[i] = tokens[i].replaceAll("^\\s|\\s$", "");
-                    }
+                    String[] tokens = parseCommand(commandLine);
+                    if (tokens == null) continue;
 
                     Command command = commandFactory.getCommand(tokens[0]);
+
                     Optional.ofNullable(command).ifPresentOrElse(c -> c.run(userService, bookService, borrowRecordService, tokens), ()-> {
                         System.out.println(String.format("command:%s is not a valid command.", tokens[0]));
                     });
+
                     if (command instanceof ExitCommand) {
                         break;
                     }
@@ -72,6 +66,20 @@ public class LibraryManagementSystem {
                 }
             }
         }
+    }
+
+    private static String[] parseCommand(String commandLine) {
+        String[] tokens = commandLine.trim().split("\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+        if (tokens.length == 0) {
+            System.out.println("");
+            return null;
+        }
+        // Remove double quotes and space from the parsed tokens in the head and tail
+        for (int i = 0; i < tokens.length; i++) {
+            tokens[i] = tokens[i].replaceAll("^\"|\"$", "");
+            tokens[i] = tokens[i].replaceAll("^\\s|\\s$", "");
+        }
+        return tokens;
     }
 
     public static void main(String[] args) {
